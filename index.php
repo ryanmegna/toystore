@@ -3,6 +3,7 @@
     /* TO-DO: Include header.php
               Hint: header.php is inside the includes folder and already connects to the database
     */
+	require_once __DIR__ . '/includes/header.php';
 
 
 
@@ -13,6 +14,8 @@
 	 * @param string $id     The ID of the toy to retrieve.
 	 * @return array|null    An associative array containing the toy information, or null if no toy is found.
 	 */
+
+	/*
 	function get_toy(PDO $pdo, string $id) {
 		                                                    // SQL query to retrieve toy information based on the toy ID
 		$sql = "SELECT * 
@@ -26,33 +29,41 @@
 		return $toy;                                        // Return the toy information (associative array)
 	}
 
-	$toy1 = get_toy($pdo, '0001');                          // Retrieve info about toy with ID '0001' from the database using provided PDO connection
+	$toy1 = get_toy($pdo, '0001');   
+	
+	*/
+	// Retrieve info about toy with ID '0001' from the database using provided PDO connection
+
+	function get_toys(PDO $pdo) {
+		$sql = "SELECT *
+				FROM toy;";
+		
+		$toys = pdo($pdo, $sql)->fetchAll();
+
+		return $toys;
+	}
+
+	$toys = get_toys($pdo);
 ?>
+
+
 
 
 <section class="toy-catalog">
 
+	
+    <?php foreach ($toys as $toy): ?>
+		<div class="toy-card">
+			<a href="toy.php?toynum=<?= $toy['toyID'] ?>">
+				<img src="<?= $toy['img_src'] ?>" alt="<?= $toy['name'] ?>">
+			</a>
 
-    <!-- TOY CARD START -->
-    <div class="toy-card">
-  	    <!-- TO-DO: Create a hyperlink to toy.php and pass the toy number as a URL parameter
-                    Hint: Access the value from the $toy1 array (what is the column name in the database?) -->
-  	    <a href="toy.php?toynum=<?= '' ?>">
+			<h2><?= $toy['name'] ?></h2>
+			<p>$ <?= $toy['price'] ?></p>
+		</div>
+	<?php endforeach; ?>
 
-  		    <!-- TO-DO: Display the toy image and update the alt text to the toy name
-                        Hint: Access the values from the $toy1 array (what are the column names in the database?) -->
-  			<img src="<?= '' ?>" alt="<?= '' ?>">
-  		</a>
 
-  		<!-- TO-DO: Display the name of the toy
-                    Hint: Access the value from the $toy1 array (what is the column name in the database?) -->
-  		<h2><?= '' ?></h2>
-
-  		<!-- TO-DO: Display price of toy 
-                    Hint: Access the value from the $toy1 array (what is the column name in the database?) -->
-  		<p>$<?= '' ?></p>
-  	</div>
-    <!-- TOY CARD END -->
 
 
     <!-- TO-DO: Display the rest of the toys in the database
@@ -70,4 +81,4 @@
 
 </section>
 
-<?php include 'includes/footer.php'; ?>
+<?php include __DIR__ . '/includes/footer.php'; ?>

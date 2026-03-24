@@ -3,6 +3,7 @@
 	/* TO-DO: Include session.php to handle login sessions
               Hint: Both header.php and session.php are inside the includes folder
     */
+	require_once __DIR__ . '/includes/session.php';
 
 
 	logout();											// Call the logout function to terminate session

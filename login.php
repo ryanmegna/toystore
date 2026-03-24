@@ -5,6 +5,7 @@
                 Load this before any redirects or login logic.
                 Both header.php and database-connection.php are inside the includes folder
   */
+  require_once __DIR__ . '/includes/database-connection.php';
 
 
 
@@ -13,7 +14,7 @@
                 Load this before any redirects or login logic.
                 Both header.php and session.php are inside the includes folder
   */
-
+  require_once __DIR__ . '/includes/session.php';
 
 
   
@@ -36,6 +37,7 @@
 
               Hint: You defined authenticate() earlier in session.php
     */
+    $user = authenticate($pdo, $username, $password);
 
 
 
