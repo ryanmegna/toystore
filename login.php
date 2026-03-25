@@ -53,6 +53,7 @@
             Hint: Include this AFTER redirects so that HTML output does not break header() functions.
                   header.php is inside the includes folder and already connects to the database
   */
+  require_once __DIR__ . '/includes/header.php';
     
 ?> 
 

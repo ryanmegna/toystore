@@ -38,7 +38,7 @@ catch (PDOException $e) {                  // Catch any exceptions that occur du
  * @param array|null $arguments         Optional array of parameters to bind to the SQL query.
  * @return PDOStatement PDOStatement    A PDOStatement object containing the result set.
  */
-function pdo(PDO $pdo, string $sql, array $arguments = null)
+function pdo(PDO $pdo, string $sql, ?array $arguments = null)
     {
         if (!$arguments) {                   // If no arguments provided
             return $pdo->query($sql);       // Run SQL query and return PDOStatement object
@@ -48,4 +48,4 @@ function pdo(PDO $pdo, string $sql, array $arguments = null)
         return $statement;               // Return PDOStatement object
     }
                                           
-// Closing PHP tag  ?>   
+// End of database-connection.php (no closing PHP tag)
