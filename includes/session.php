@@ -1,17 +1,13 @@
 <?php
 
-	if (session_status() !== PHP_SESSION_ACTIVE) {		// Start session only if not already active
-		session_start();
-	}
+	session_start();										// Start/renew session									 	
 	$logged_in = $_SESSION['logged_in'] ?? false; 			// Is user logged in?      
 
 
 
 	function login($user)									// Remember user passed login
 	{
-		if (session_status() === PHP_SESSION_ACTIVE) {		// Regenerate only for an active session
-    		session_regenerate_id(true);
-		}
+    	session_regenerate_id(true); 						// Update session id
 
 	    $_SESSION['logged_in'] = true;						// Set logged_in key to true
 	    $_SESSION['username'] = $user['username'];			// Set username key to username from database 
